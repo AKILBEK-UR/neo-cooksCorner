@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom";
 export default function LoginForm(){
 
-    const {register, formState:{errors}, handleSubmit,} = useForm();
+    const {register, formState:{errors, isValid}, handleSubmit,} = useForm();
 
     const onSubmit = (data) =>{
         console.log(data);
@@ -20,7 +20,6 @@ export default function LoginForm(){
                     className={styles.input}
                     placeholder="Enter email to sign in."
                 />
-                {errors.email && <p className={styles.error}>{errors.email.message}</p>}
             </div>
             <div className={styles.field}>
                 <label className={styles.label}>Password</label>
@@ -32,9 +31,8 @@ export default function LoginForm(){
                     className={styles.input}
                     placeholder="Enter password to sign in."
                 />
-                {errors.password && <p className={styles.error}>{errors.password.message}</p>}
             </div>
-            <button type="submit" className={styles.signin}>
+            <button type="submit" className={styles.signin} disabled = {!isValid}>
                 Sign In
             </button>
             <div className={styles.signup}>

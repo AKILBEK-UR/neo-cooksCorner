@@ -33,6 +33,11 @@
     border-radius: 4.2rem;
     color: var(--Text-White) !important;
     width: 48rem;
+    &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed; /* Change cursor to indicate it is disabled */
+        cursor: pointer;
+      }
 }
 .text{
     font-size: var(--font-size-h7);
@@ -45,9 +50,4 @@
     width: 48rem;
     justify-content: center;
     margin-top: 5rem;
-}
-.error{
-    color: var(--Red);
-    font-size: var(--font-size-h7);
-    padding-left: 2.4rem;
 }
