@@ -1,0 +1,25 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--Primary);
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    max-height: 30rem;
+  }
+  
+  .text {
+    max-width: 35rem;
+    width: 100%;
+    max-height: 12rem;
+    height: 100%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .title {
+    font-weight: 300;
+    font-size: 4rem;
+    line-height: 6rem;
+    color: var(--Text-White);
+  }

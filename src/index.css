@@ -1,17 +1,16 @@
 *{
   margin: 0;
-padding: 0;
-border: 0;
-font-size: 100%;
-font: inherit;
-vertical-align: baseline;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 html{
   font-size: 10px;
-  font-family: "M PLUS 1p", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
-  background-color: #ffffff;
 }
 :focus {
   outline: 0;
@@ -20,12 +19,26 @@ a{
   text-decoration: none;
 }
 
-
+/* 40 36 24 20 18 16 14 12  */
 :root {
-  --font-size-h1: 4.8rem;
-  --font-size-h2: 3.2rem;
-  --font-size-h3: 2.8rem;
-  --font-size-h4: 1.6rem;
+  --font-size-h1: 4rem;
+  --font-size-h2: 3.6rem;
+  --font-size-h3: 2.4rem;
+  --font-size-h4: 2rem;
+  --font-size-h5: 1.8rem;
+  --font-size-h6: 1.6rem;
+  --font-size-h7: 1.4rem;
+  --font-size-p: 1.2rem;
+
+  --Primary: #FA9E31;
+  --Text-White:rgb(255, 255, 255);
+  --Text-Black:#343434;
+  --Text-Faded:#666666;
+  --Icon-Faded:#8A8A8A;
+  --Input-Field-Background:#EDEDED;
+  --Secondory:#FFF6DE;
+  --Background:#FAFAFA;
+  --Red:#FF5151;
 }
 
 button,
