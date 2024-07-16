@@ -7,4 +7,6 @@ import search_active from "./search_hover.svg";
 import exit from "./exit.svg";
 import logo from "./logo.svg";
 import line from "./line.svg";
-export {home,line, home_active, search, search_active,logo,exit,profile,profile_active};
+import visibleOn from "./visible.svg";
+import visibleOff from "./notVisible.svg";
+export {home,line, home_active, search, search_active,logo,exit,profile,profile_active, visibleOn, visibleOff};

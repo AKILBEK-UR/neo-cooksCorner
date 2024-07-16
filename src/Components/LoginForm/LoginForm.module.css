@@ -13,16 +13,29 @@
     flex-direction: column;
     row-gap: 0.5rem;
 }
+.form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 5.6rem;
+    border-radius: 4.2rem;
+    background-color: var(--Input-Field-Background);
+}
+.visible{
+    height: 2rem;
+    width: 2rem;
+    padding-right: 2rem;
+    cursor: pointer;
+}
 .label{
     font-size: var(--font-size-h5);
     color: var(--Primary);
     font-weight:500;
 }
 .input{
-    border-radius: 4.2rem;
-    background-color: var(--Input-Field-Background);
+    width: 80vh;
     font-size: var(--font-size-h6);
-    height: 5.6rem;
     padding-left: 2.4rem;
     color: var(--Text-Black);
 }

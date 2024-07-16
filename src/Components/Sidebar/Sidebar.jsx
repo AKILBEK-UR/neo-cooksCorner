@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./Sidebar.module.css";
-import { home, home_active, search, search_active, logo, profile, profile_active } from "../../assets/index.js";
+import { home, home_active, search, search_active, logo, profile, profile_active, exit } from "../../assets/index.js";
 import { NavLink } from "react-router-dom";
 
 const menuItem = [
     {
-        path: "/home",
+        path: "/",
         icon: home,
         activeIcon: home_active,
     },
@@ -27,12 +27,12 @@ const Sidebar = () => {
 
     return (
         <div className={styles.container}>
-            <div>
+            <div className={styles.item}>
                 <NavLink to={"/"}>
                     <img src={logo} className={styles.logo} alt="Logo" />
                 </NavLink>
-            </div>
-            {menuItem.map((item, index) => (
+
+                {menuItem.map((item, index) => (
                 <NavLink
                     to={item.path}
                     key={index}
@@ -44,6 +44,14 @@ const Sidebar = () => {
                     />
                 </NavLink>
             ))}
+            </div>
+            <NavLink 
+                to={"/"}
+                className={styles.link}
+                style={{marginBottom:"2rem"}}
+            >
+                <img src={exit}/>
+            </NavLink>
         </div>
     );
 };

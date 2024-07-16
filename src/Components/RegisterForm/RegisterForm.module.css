@@ -8,6 +8,21 @@
     margin-top: 10rem;
     margin-bottom: 5rem;
 }
+.visible{
+    height: 2rem;
+    width: 2rem;
+    padding-right: 2rem;
+    cursor: pointer;
+}
+.form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 5.6rem;
+    border-radius: 4.2rem;
+    background-color: var(--Input-Field-Background);
+}
 .field{
     width: 48rem;
     display: flex;
@@ -20,10 +35,7 @@
     font-weight:500;
 }
 .input{
-    border-radius: 4.2rem;
-    background-color: var(--Input-Field-Background);
     font-size: var(--font-size-h6);
-    height: 5.6rem;
     padding-left: 2.4rem;
     color: var(--Text-Black);
 }

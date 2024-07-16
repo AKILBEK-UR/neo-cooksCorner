@@ -1,12 +1,17 @@
 .container{
-    display: flex;
     background-color: var(--Input-Field-Background);
-    display: flex;
-    flex-direction: column;
     width: 9.6rem;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    row-gap: 5rem;
+    position: fixed;
+}
+.item{
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
 }
 .link{
     background-color: var(--Background);
@@ -22,15 +27,8 @@
     border-radius:2rem;
     background-color: var(--Primary);
 }
-.logo{
+.logo {
     padding-top: 2rem;
-}
-.logo::after {
-    content: "";
-    height: 1px;
-    width: 1rem;
-    background-color: #8a8a8a;
-    color: #8a8a8a;
 }
 .active{
     background-color: var(--Primary);

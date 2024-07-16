@@ -7,8 +7,24 @@ import Profile from "./pages/Profile/Profile"
 import Search from "./pages/Search/Search";
 import Layout from "./Components/Layout/Layout"
 export default function App() {
+  let isAuthenticated = true;
   return (
+    <>
+    {isAuthenticated ? (      
+        <Routes>
+      <Route path="/" element={<Layout />}> 
+          <Route index element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+      </Routes>
+    ) : (
       <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+    )}
+      {/* <Routes>
         <Route path="/" element={<Layout />}> 
           <Route index element={<Login />} />
           <Route path="/register" element = {<Register />} />
@@ -16,6 +32,7 @@ export default function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
-      </Routes>
+      </Routes> */}
+      </>
   )
 }
