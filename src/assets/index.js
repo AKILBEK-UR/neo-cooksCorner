@@ -9,4 +9,6 @@ import logo from "./logo.svg";
 import line from "./line.svg";
 import visibleOn from "./visible.svg";
 import visibleOff from "./notVisible.svg";
-export {home,line, home_active, search, search_active,logo,exit,profile,profile_active, visibleOn, visibleOff};
+import like from "./like.svg"
+import saved from "./saved.svg"
+export {saved, like, home,line, home_active, search, search_active,logo,exit,profile,profile_active, visibleOn, visibleOff};

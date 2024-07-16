@@ -1,4 +1,4 @@
-export const data = [
+export const Lunch = [
     {
       "image": "https://cdn.pixabay.com/photo/2024/02/23/21/25/landscape-8592826_1280.jpg",
       "title": "Mount Fuji",
@@ -188,12 +188,6 @@ export const data = [
         "likes": 123,
         "saved": 312,
       },
-      {
-        "image": "https://cdn.pixabay.com/photo/2024/02/23/21/25/landscape-8592826_1280.jpg",
-        "title": "Mount Fuji",
-        "author": "Akilbek Eas",
-        "likes": 123,
-        "saved": 312,
-      },
+      
     
   ]

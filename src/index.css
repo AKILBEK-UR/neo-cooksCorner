@@ -14,10 +14,14 @@ html{
 :focus {
   outline: 0;
 }
-a{
+a {
   text-decoration: none;
 }
-
+li{
+  list-style: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
 /* 40 36 24 20 18 16 14 12  */
 :root {
   --font-size-h1: 4rem;
@@ -55,6 +59,6 @@ input{
   background-color: transparent;
   transition: 1s;
 }
-button:hover{
+button, li:hover{
   opacity: 0.75;
 }

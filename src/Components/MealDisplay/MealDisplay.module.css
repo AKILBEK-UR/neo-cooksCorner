@@ -1,0 +1,49 @@
+.slider__tours{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 4rem;
+    row-gap: 1.6rem;
+    margin-top: 2rem;
+}
+
+.slider__tours_container{
+    border-radius: 2rem;
+    width: 30.8rem;
+    height: 20.9rem;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.image_overlay{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 20.9rem;
+    border-radius: 0rem 0rem 2rem 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    width: 100%;
+}
+.content{
+    padding: 1.5rem;
+}
+h1{
+    font-size: var(--font-size-h4);
+}
+h2{
+    font-size: var(--font-size-h7);
+}
+.numbers{
+    padding-top: 0.7rem;
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem;
+}
+h3{
+    font-size: var(--font-size-p);
+    font-weight: 200;
+}
