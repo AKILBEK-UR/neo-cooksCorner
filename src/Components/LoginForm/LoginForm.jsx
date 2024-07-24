@@ -3,15 +3,29 @@ import styles from "./LoginForm.module.css"
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom";
 import { visibleOff, visibleOn } from "../../assets";
-export default function LoginForm(){
+import { loginAccount } from "../../store/Auth/authReducer";
+import { useDispatch } from "react-redux";
 
+export default function LoginForm(){
+    const dispatch = useDispatch()
     const {register, formState:{errors, isValid}, handleSubmit,} = useForm();
     const [passwordVisible, setPasswordVisible ]  = useState(false);
     const changePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
       };
-    const onSubmit = (data) =>{
-        console.log(data);
+    const onSubmit = async (data) =>{
+        const value = {
+            email:data.email,
+            password:data.password,
+        }
+        console.log(value);
+        try {
+          await dispatch(loginAccount(value));
+          console.log("Registration was successful");
+        //   navigate("/login");
+        } catch (error) {
+          console.log("Registration failed", error);
+        }
     }
 
     return (<>

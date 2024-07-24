@@ -2,6 +2,9 @@ import React from "react";
 import styles from "./Sidebar.module.css";
 import { home, home_active, search, search_active, logo, profile, profile_active, exit } from "../../assets/index.js";
 import { NavLink } from "react-router-dom";
+import { logoutAccount } from "../../store/Auth/authReducer.js";
+import { useDispatch } from "react-redux";
+
 
 const menuItem = [
     {
@@ -24,7 +27,17 @@ const menuItem = [
 const Sidebar = () => {
     const setActiveLink = ({ isActive }) =>
         `${styles.link} ${isActive ? styles.active : ""}`;
+    const dispatch = useDispatch();
 
+    const handleLogOut = async (data) =>{
+        try {
+            await dispatch(logoutAccount(value));
+            console.log("Registration was successful");
+          //   navigate("/login");
+          } catch (error) {
+            console.log("Registration failed", error);
+          }
+    }
     return (
         <div className={styles.container}>
             <div className={styles.item}>
@@ -45,13 +58,13 @@ const Sidebar = () => {
                 </NavLink>
             ))}
             </div>
-            <NavLink 
-                to={"/"}
+            <button 
+                onClick = {handleLogOut}
                 className={styles.link}
                 style={{marginBottom:"2rem"}}
             >
                 <img src={exit}/>
-            </NavLink>
+            </button>
         </div>
     );
 };

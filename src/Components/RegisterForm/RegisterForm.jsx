@@ -5,6 +5,10 @@ import { registerSchema } from "../../Schema/registerSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { visibleOff,visibleOn } from "../../assets";
 import { useState } from "react";
+import { registerAccount } from "../../store/Auth/authReducer";
+import { useDispatch } from "react-redux";
+
+
 export default function RegisterForm(){
 
     const {register, formState:{errors, isValid}, handleSubmit, reset,} = useForm({ 
@@ -13,12 +17,27 @@ export default function RegisterForm(){
        }
     );
     const [passwordVisible, setPasswordVisible ]  = useState(false);
+    const dispatch = useDispatch();
     const changePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
       };
-    const onSubmit = (data) =>{
-        console.log(data);
-        reset();
+
+    const onSubmit = async (data) =>{
+        const value = {
+            name: data.name,
+            email:data.email,
+            password:data.password,
+        }
+        console.log(value);
+        try {
+          await dispatch(registerAccount(value));
+          console.log("Registration was successful");
+        //   navigate("/login");
+        } catch (error) {
+          console.log("Registration failed", error);
+        } finally {
+          reset();
+        }
     }
     return (<>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.container}> 

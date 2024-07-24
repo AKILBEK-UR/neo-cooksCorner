@@ -6,16 +6,21 @@ import Home from "./pages/Home/Home"
 import Profile from "./pages/Profile/Profile"
 import Search from "./pages/Search/Search";
 import Layout from "./Components/Layout/Layout"
+import Detail from "./pages/Detail/Detail"
+import { selectAuthState } from "./store/Auth/authReducer"
+import { useSelector } from "react-redux"
 export default function App() {
-  let isAuthenticated = true;
+  const authState = useSelector(selectAuthState);
+  console.log(selectAuthState);
   return (
     <>
-    {isAuthenticated ? (      
+    {authState.isAuth ? (      
         <Routes>
       <Route path="/" element={<Layout />}> 
           <Route index element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/profile" element={<Profile />} />
+          <Route paht="/detail/:mealId" element = {<Detail />} />
         </Route>
       </Routes>
     ) : (
@@ -24,15 +29,6 @@ export default function App() {
           <Route path="/register" element={<Register />} />
         </Routes>
     )}
-      {/* <Routes>
-        <Route path="/" element={<Layout />}> 
-          <Route index element={<Login />} />
-          <Route path="/register" element = {<Register />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/profile" element={<Profile />} />
-        </Route>
-      </Routes> */}
       </>
   )
 }
