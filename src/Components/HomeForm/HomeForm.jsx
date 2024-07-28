@@ -1,53 +1,21 @@
 import { useState, useEffect } from "react";
-import { Dinner } from "../../dinner";
-import { Lunch } from "../../user";
-import { Breakfast } from "../../meal";
 import MealDisplay from "../MealDisplay/MealDisplay";
 import styles from "./HomeForm.module.css";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCategories, fetchCategories } from "../../store/Category/categoryReducer";
+
 export default function HomeForm() {
-
-
-    const api = "https://cookscorner.fun/api/v1/categories"
-
+    const dispatch = useDispatch();
+    const categories = useSelector(selectCategories);
+    console.log(categories)
     useEffect(() => {
-        const getCategory = async () => {
-          try {
-            const accessToken = localStorage.getItem('accessToken'); // Retrieve the access token from localStorage
-            const response = await axios.get('https://cookscorner.fun/api/v1/categories', {
-            headers: {
-                Authorization: `Bearer ${accessToken}`, // Include the access token in the Authorization header
-        },
-        });
-        console.log(response.data);
-          } catch (error) {
-            console.log("Error fetching meal details:", error.message);
-          }
-        };
-        getCategory();
-      },);
-    
+        dispatch(fetchCategories());
+      }, [dispatch]);
 
-
-
-
-
-
-
-
-
-    const categories = ["Breakfast", "Lunch", "Dinner"];
-    const categoryComponents = {
-        Breakfast: Breakfast,
-        Lunch: Lunch,
-        Dinner: Dinner,
-    };
-    const [active, setActive] = useState(categories[0]);
-    const [displayCategory, setDisplayCategory] = useState(categoryComponents[categories[0]]);
+    const [active, setActive] = useState(categories.name);
 
     const handleCategoryClick = (category) => {
         setActive(category);
-        setDisplayCategory(categoryComponents[category]);
     };
 
     return (
@@ -57,16 +25,16 @@ export default function HomeForm() {
                 <ul className={styles.list}>
                     {categories.map((category) => (
                         <li
-                            key={category}
+                            key={category.id}
                             className={`${styles.link} ${active === category ? styles.active : ""}`}
                             onClick={() => handleCategoryClick(category)}
                         >
-                            <p>{category}</p>
+                            <p>{category.name}</p>
                         </li>
                     ))}
                 </ul>
             </div>
-            <MealDisplay meal={displayCategory} />
+            {/* <MealDisplay meal={displayCategory} /> */}
         </div>
     );
 }

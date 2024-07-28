@@ -11,4 +11,5 @@ import visibleOn from "./visible.svg";
 import visibleOff from "./notVisible.svg";
 import like from "./like.svg"
 import saved from "./saved.svg"
-export {saved, like, home,line, home_active, search, search_active,logo,exit,profile,profile_active, visibleOn, visibleOff};
+import add from "./add.svg"
+export {add, saved, like, home,line, home_active, search, search_active,logo,exit,profile,profile_active, visibleOn, visibleOff};

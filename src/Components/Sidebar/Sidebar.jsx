@@ -1,10 +1,9 @@
 import React from "react";
 import styles from "./Sidebar.module.css";
 import { home, home_active, search, search_active, logo, profile, profile_active, exit } from "../../assets/index.js";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { logoutAccount } from "../../store/Auth/authReducer.js";
 import { useDispatch } from "react-redux";
-
 
 const menuItem = [
     {
@@ -28,16 +27,18 @@ const Sidebar = () => {
     const setActiveLink = ({ isActive }) =>
         `${styles.link} ${isActive ? styles.active : ""}`;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const handleLogOut = async (data) =>{
+    const handleLogOut = async () => {
         try {
-            await dispatch(logoutAccount(value));
-            console.log("Registration was successful");
-          //   navigate("/login");
-          } catch (error) {
-            console.log("Registration failed", error);
-          }
-    }
+            await dispatch(logoutAccount()).unwrap();
+            console.log("Logout was successful");
+            navigate("/login");
+        } catch (error) {
+            console.log("Logout failed", error);
+        }
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.item}>
@@ -56,17 +57,18 @@ const Sidebar = () => {
                         alt={item.path}
                     />
                 </NavLink>
-            ))}
+                ))}
             </div>
             <button 
-                onClick = {handleLogOut}
+                onClick={handleLogOut}
                 className={styles.link}
                 style={{marginBottom:"2rem"}}
             >
-                <img src={exit}/>
+                <img src={exit} alt="Logout"/>
             </button>
         </div>
     );
 };
 
 export default Sidebar;
+

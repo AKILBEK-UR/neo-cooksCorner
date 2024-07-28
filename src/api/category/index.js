@@ -1,4 +1,8 @@
 import { Endpoints } from "../endpoints";
 import { axiosInstance } from "../instance";
-
-export const categories = axiosInstance.get(Endpoints.CATEGORIES.LIST)
+const accessToken = localStorage.getItem('accessToken'); 
+  export const category = () => axiosInstance.get( Endpoints.CATEGORIES.LIST, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })

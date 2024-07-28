@@ -1,53 +1,53 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { register, login, logout } from "../../api/auth";
-import { iLoginRequest,iLoginResponse } from "../../api/auth/types";
+import { register, login, logout, refresh } from "../../api/auth";
 
 export const registerAccount = createAsyncThunk(
     "auth/register",
     async (data, { rejectWithValue }) => {
       try {
         const response = await register(data);
-        console.log(response.data);
         return response.data;
       } catch (error) {
         return rejectWithValue(error.response.data);
       }
     }
-)
+);
 
 export const loginAccount = createAsyncThunk(
     "auth/login",
-    async(data, { rejectWithValue}) =>{
-        try{
-            const response = await login(data)
-            console.log(response.data)
+    async(data, { rejectWithValue }) => {
+        try {
+            const response = await login(data);
             return response.data;
-        }catch(error){
-            return rejectWithValue(error.response.data)
+        } catch(error) {
+            return rejectWithValue(error.response.data);
         }
     }
-)
+);
 
 export const logoutAccount = createAsyncThunk(
     "auth/logout",
-    async(data, { rejectWithValue}) =>{
-        try{
-            const response = await logout(data)
-            console.log(response.data)
+    async(_, { rejectWithValue }) => {
+        try {
+            const response = await logout();
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
             return response.data;
-        }catch(error){
-            return rejectWithValue(error.response.data)
+        } catch(error) {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            return rejectWithValue(error.response.data);
         }
     }
-)
+);
+
 const initialState = {
     isAuth: false,
     accessToken: null,
     refreshToken: null,
     isLoading: false,
     error: null
-}
+};
 
 const authSlice = createSlice({
     name: "auth",
@@ -55,7 +55,6 @@ const authSlice = createSlice({
     reducers: {
       setIsAuth(state, action) {
         state.isAuth = action.payload;
-        console.log(action)
       },
     },
     extraReducers: (builder) => {
@@ -102,12 +101,15 @@ const authSlice = createSlice({
           state.isAuth = false;
         })
         .addCase(logoutAccount.rejected, (state, action) => {
+          state.accessToken = null;
+          state.refreshToken = null;
           state.isLoading = false;
           state.error = action.payload;
-        })
+          state.isAuth = false;
+        });
     },
-  });
+});
 
-  export default authSlice.reducer;
-  export const { setIsAuth } = authSlice.actions;
-  export const selectAuthState = (state) => state.auth;
+export default authSlice.reducer;
+export const { setIsAuth } = authSlice.actions;
+export const selectAuthState = (state) => state.auth;

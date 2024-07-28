@@ -2,12 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import logger from "redux-logger";
 import authReducer from "./Auth/authReducer";
-import categoryRedecuer from "./Category/categoryRedecuer";
-
+import categoryReducer from "./Category/categoryReducer";
+import recipreReducer from "./recipe/recipreReducer";
 const store = configureStore({
     reducer:{
         auth: authReducer, 
-        category: categoryRedecuer,
+        categories: categoryReducer,
+        recipe: recipreReducer,
     },
 });
 
