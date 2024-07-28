@@ -12,8 +12,6 @@ import { useSelector } from "react-redux";
 
 export default function App() {
   const authState = useSelector(selectAuthState);
-  console.log(authState);
-
   return (
     <>
       {authState.isAuth ? (

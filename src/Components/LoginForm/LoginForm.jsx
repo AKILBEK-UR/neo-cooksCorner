@@ -18,7 +18,6 @@ export default function LoginForm(){
             email:data.email,
             password:data.password,
         }
-        console.log(value);
         try {
           await dispatch(loginAccount(value));
           console.log("Registration was successful");

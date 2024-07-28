@@ -1,12 +1,19 @@
-import {Endpoints} from "../endpoints"
-import { axiosInstance } from "../instance"
+import { Endpoints } from "../endpoints";
+import { axiosInstance } from "../instance";
 
-export const fetchRecipesAPI = (value) => {
+export const fetchRecipesAPI = (categoryId, page, size, sort) => {
   const accessToken = localStorage.getItem('accessToken');
-  return axiosInstance.get(Endpoints.RECIPES.RECIPES_LIST, {
+
+  const queryString = new URLSearchParams({
+    categoryId,
+    page,
+    size,
+    sort: sort,
+  })
+
+  return axiosInstance.get(`${Endpoints.RECIPES.RECIPES_LIST}?${queryString}`, {
     headers: {
-      Authorization: `Bearer ${accessToken}`, // Include the access token in the Authorization header
-    },
-    value
+      Authorization: `Bearer ${accessToken}`,
+    }
   });
 };

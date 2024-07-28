@@ -1,15 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchRecipesAPI } from '../../api/recipes';
+import { fetchRecipesAPI } from '../../api/recipes'; // Adjust import path as needed
 
 export const fetchRecipes = createAsyncThunk(
   'recipes/fetchRecipes',
-  async (data, { rejectWithValue }) => {
+  async ({ categoryId, page = 0, size = 10, sort = [] }, { rejectWithValue }) => {
     try {
-      const response = await fetchRecipesAPI(data);
-      console.log(response.data);
-      return response.data;
+      const response = await fetchRecipesAPI(categoryId, page, size, sort);
+      return response.data.content; // Adjust based on the structure of your API response
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response ? error.response.data : { message: 'An error occurred' });
     }
   }
 );
@@ -32,19 +31,18 @@ const recipeSlice = createSlice({
       })
       .addCase(fetchRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.recipes = action.payload;
+        state.recipes = action.payload; // Update recipes with fetched data
         state.error = null;
       })
       .addCase(fetchRecipes.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload; // Store the error message
       });
   },
 });
 
 export default recipeSlice.reducer;
 
-// Selectors
-export const selectRecipes = (state) => state.recipes.recipes;
-export const selectRecipesLoading = (state) => state.recipes.isLoading;
-export const selectRecipesError = (state) => state.recipes.error;
+export const selectRecipes = (state) => state.recipe.recipes;
+export const selectRecipesLoading = (state) => state.recipe.isLoading;
+export const selectRecipesError = (state) => state.recipe.error;

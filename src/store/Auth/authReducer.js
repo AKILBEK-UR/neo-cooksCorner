@@ -14,15 +14,18 @@ export const registerAccount = createAsyncThunk(
 );
 
 export const loginAccount = createAsyncThunk(
-    "auth/login",
-    async(data, { rejectWithValue }) => {
-        try {
-            const response = await login(data);
-            return response.data;
-        } catch(error) {
-            return rejectWithValue(error.response.data);
-        }
+  'auth/login',
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await login(data);
+      const { accessToken, refreshToken } = response.data;
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
+  }
 );
 
 export const logoutAccount = createAsyncThunk(
